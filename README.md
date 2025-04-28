@@ -1,4 +1,6 @@
-# Fine-Tuning Open-Weight LLMs with Unsloth (Full Cycle)
+---
+
+# 📚 Fine-Tuning Open-Weight LLMs with Unsloth (Full Cycle)
 
 This project demonstrates **end-to-end fine-tuning, continued pretraining, reward modeling, and model deployment** workflows using [Unsloth](https://github.com/unslothai/unsloth).
 
@@ -20,6 +22,15 @@ We use open-weight models like **Phi-2** to complete a full training-to-deployme
 
 ---
 
+## 🎥 YouTube Demo
+
+[![Watch the demo](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/hqdefault.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID)
+
+> 📌 **Replace `YOUTUBE_VIDEO_ID` above with your actual video ID**  
+> (e.g., if your link is `https://www.youtube.com/watch?v=abcd1234`, then `YOUTUBE_VIDEO_ID = abcd1234`).
+
+---
+
 ## 📂 Folder Structure
 
 ```bash
@@ -36,7 +47,7 @@ phi2-mental-health-final/
 
 ## 🛠️ Technologies Used
 
-- Unsloth
+- [Unsloth](https://github.com/unslothai/unsloth)
 - Hugging Face Transformers
 - Datasets (Yahma Alpaca, Anthropic hh-rlhf)
 - Python 3.11
@@ -46,19 +57,21 @@ phi2-mental-health-final/
 
 ## 🧠 Key Learnings
 
-- Efficient fine-tuning with LoRA.
-- Dataset preparation for various NLP tasks.
-- Checkpoint saving, loading, and resuming.
-- Reward modeling (conceptual explanation).
-- Handling model size limitations for deployment.
+- Efficient LoRA-based fine-tuning for LLMs.
+- Dataset preparation for classification, chat, and instruction tuning tasks.
+- Resuming model training from intermediate checkpoints.
+- Reward modeling theory with Direct Preference Optimization (DPO) and Offline Reinforcement Preference Optimization (ORPO).
+- Challenges around local inference for large LLMs.
+- Full-cycle deployment planning.
 
 ---
 
 ## 📜 Important Notes
 
 - Phi-2 (~2.7B parameters) is a relatively large model.  
-  Local inference on low-resource machines (e.g., MacBook CPU) requires heavy model offloading or use of smaller models.
-- Full training-to-inference workflow demonstrated successfully using cloud/Colab.
+  Local inference requires strong GPU/TPU resources or smart offloading strategies.
+- Model saving (`save_pretrained`) and loading demonstrated successfully.
+- Training-to-inference cycle completed and explained thoroughly.
 
 ---
 
