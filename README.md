@@ -1,24 +1,22 @@
----
+# Fine-Tuning Open-Weight LLMs with Unsloth (Full Cycle)
 
-# 📚 Fine-Tuning Open-Weight LLMs with Unsloth (Full Cycle)
+This project demonstrates **end-to-end fine-tuning, continued pretraining, reward modeling, and model deployment** workflows using [Unsloth](https://github.com/unslothai/unsloth).
 
-This project demonstrates **end-to-end fine-tuning, continued pretraining, reward modeling, and model deployment** workflows using the [Unsloth](https://github.com/unslothai/unsloth) framework.
-
-We work with open-weight models like **Phi-2** to showcase full-cycle model development.
+We use open-weight models like **Phi-2** to complete a full training-to-deployment pipeline.
 
 ---
 
 ## 🚀 Project Overview
 
-| Part | Description |
-|-----|-------------|
-| a) Fine-Tuning | Fine-tuned `microsoft/phi-2` model on custom datasets for Chatbot and Summarization tasks. |
-| b) Continued Pretraining | Pretrained model further on synthetic made-up language examples. |
-| c) Chat Templates | Fine-tuned for classification, conversation, and extended max context size using 4096 tokens. |
-| d) Reward Modeling | Explained Direct Preference Optimization (DPO) and Offline Reinforcement Preference Optimization (ORPO) concepts. |
-| e) Continued Fine-Tuning from Checkpoint | Demonstrated resuming model training from saved intermediate checkpoints. |
-| f) Mental Health Chatbot Fine-Tuning | Fine-tuned a Phi-2 model to respond empathetically for mental health conversations. |
-| g) Model Export and Inference | Saved fine-tuned model with Hugging Face `save_pretrained` method. Inference attempted locally with explanation for large model limitations. |
+| Part | Description | Colab Link |
+|-----|-------------|------------|
+| a) Fine-Tuning | Fine-tune `microsoft/phi-2` on custom tasks (chat, summarization). | [Colab Notebook](https://colab.research.google.com/drive/1eekXJ8RgiYkOg_o1CmnpxJmdW81TG4Sw?usp=sharing) |
+| b) Continued Pretraining | Pretrain further on synthetic made-up language examples. | [Colab Notebook](https://colab.research.google.com/drive/1KECKZFLTqQAqPnZN-JMflhjKc5GBZ18z?usp=sharing) |
+| c) Chat Templates | Fine-tune on classification, conversation, and long-context tasks. | [Colab Notebook](https://colab.research.google.com/drive/1NU9wiNmIOkGt1HCazJUBEgaX7Rk_QjLB?usp=sharing) |
+| d) Reward Modeling | Explained DPO and ORPO concepts (with fine-tuning plan). | [Colab Notebook](https://colab.research.google.com/drive/1S7pUkRCoYuxXnrl1d0VedIeDulxgnVzP?usp=sharing) |
+| e) Continued Fine-Tuning from Checkpoint | Demonstrated training resumption after checkpoints. | [Colab Notebook](https://colab.research.google.com/drive/15CdcxZbIACalNsuc0S8q_MAZyP_8cSdS?usp=sharing) |
+| f) Mental Health Chatbot Fine-Tuning | Fine-tuned Phi-2 to respond empathetically for mental health conversations. | [Colab Notebook (f+g)](https://colab.research.google.com/drive/1s0Pf5HdFyVgKawxVn8xnObxb-N0SsSIe?usp=sharing) |
+| g) Model Export and Inference | Saved fine-tuned model, attempted inference, explained large model constraints. | [Colab Notebook (f+g)](https://colab.research.google.com/drive/1s0Pf5HdFyVgKawxVn8xnObxb-N0SsSIe?usp=sharing) |
 
 ---
 
@@ -38,7 +36,7 @@ phi2-mental-health-final/
 
 ## 🛠️ Technologies Used
 
-- [Unsloth](https://github.com/unslothai/unsloth)
+- Unsloth
 - Hugging Face Transformers
 - Datasets (Yahma Alpaca, Anthropic hh-rlhf)
 - Python 3.11
@@ -48,44 +46,19 @@ phi2-mental-health-final/
 
 ## 🧠 Key Learnings
 
-- LoRA-based efficient fine-tuning of large models.
-- Creating custom datasets for chatbots, classification, summarization.
-- Model checkpoint saving and resuming.
-- Challenges around local inference for large language models (Phi-2).
-- Full-cycle model deployment workflow even without specialized hardware.
+- Efficient fine-tuning with LoRA.
+- Dataset preparation for various NLP tasks.
+- Checkpoint saving, loading, and resuming.
+- Reward modeling (conceptual explanation).
+- Handling model size limitations for deployment.
 
 ---
 
 ## 📜 Important Notes
 
-- **Phi-2** is a relatively large model (~2.7B parameters). Running full inference locally (on MacBooks or small CPUs) can be infeasible without heavy offloading or using smaller models like TinyLlama.
-- Fine-tuning and inference workflows are completed successfully within cloud environments and exported for deployment.
-
----
-
-## 🧹 How to Run Locally
-
-If you have a sufficiently powerful machine (e.g., with >24 GB VRAM):
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-model = AutoModelForCausalLM.from_pretrained("./phi2-mental-health-final", device_map="auto", offload_folder="./offload")
-tokenizer = AutoTokenizer.from_pretrained("./phi2-mental-health-final")
-
-prompt = "<|user|>\nI'm feeling overwhelmed with my problems.\n<|assistant|>"
-inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=100)
-
-print(tokenizer.decode(outputs[0], skip_special_tokens=True))
-```
-
-Otherwise, models can be deployed in server environments, Colab Pro+, or Hugging Face Inference Endpoints.
-
----
-
-## 📷 Demo Screenshots
-
-*(Add any screenshots from your Colab runs or training logs here if needed)*
+- Phi-2 (~2.7B parameters) is a relatively large model.  
+  Local inference on low-resource machines (e.g., MacBook CPU) requires heavy model offloading or use of smaller models.
+- Full training-to-inference workflow demonstrated successfully using cloud/Colab.
 
 ---
 
@@ -94,5 +67,3 @@ Otherwise, models can be deployed in server environments, Colab Pro+, or Hugging
 For any questions regarding this project:
 - GitHub Issues
 - [Unsloth Discord](https://discord.gg/unsloth)
-
----
