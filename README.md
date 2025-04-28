@@ -96,7 +96,3 @@ For any questions regarding this project:
 - [Unsloth Discord](https://discord.gg/unsloth)
 
 ---
-
-# 🎯 Final Submission Status: ✅ All parts (a to g) completed successfully!
-
----
